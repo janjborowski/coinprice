@@ -16,9 +16,21 @@ final class CoinPriceCell: UITableViewCell {
     @IBOutlet private weak var coinNameLabel: UILabel!
     @IBOutlet private weak var priceLabel: UILabel!
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    func fill(ticker: CoinTicker) {
+        coinSymbolLabel.text = ticker.symbol
+        coinNameLabel.text = ticker.name
+
+        if let price = ticker.currencyQuotes.values.first?.price {
+            let formatter = NumberFormatter()
+            if price >= 1 {
+                formatter.maximumFractionDigits = 2
+            }
+            else {
+                formatter.minimumIntegerDigits = 1
+                formatter.maximumFractionDigits = 5
+            }
+            priceLabel.text = formatter.string(for: price)
+        }
     }
-    
+
 }

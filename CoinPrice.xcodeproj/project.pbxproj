@@ -15,6 +15,17 @@
 		3FCD266C20CE49410054F0CB /* PriceList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FCD266A20CE49410054F0CB /* PriceList.storyboard */; };
 		3FCD266F20CE49E40054F0CB /* CoinPriceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCD266D20CE49E40054F0CB /* CoinPriceCell.swift */; };
 		3FCD267020CE49E40054F0CB /* CoinPriceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FCD266E20CE49E40054F0CB /* CoinPriceCell.xib */; };
+		3FCD267220CE4FDA0054F0CB /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCD267120CE4FDA0054F0CB /* DIContainer.swift */; };
+		3FCD267420CE50030054F0CB /* PriceListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCD267320CE50030054F0CB /* PriceListViewModel.swift */; };
+		3FCD267820CE53CC0054F0CB /* CoinTicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCD267720CE53CC0054F0CB /* CoinTicker.swift */; };
+		3FCD267A20CE542E0054F0CB /* FiatCurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCD267920CE542E0054F0CB /* FiatCurrency.swift */; };
+		3FCD267C20CE545C0054F0CB /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCD267B20CE545C0054F0CB /* Quote.swift */; };
+		3FCD267E20CE550E0054F0CB /* CoinTickerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCD267D20CE550E0054F0CB /* CoinTickerResponse.swift */; };
+		3FCD268020CE55740054F0CB /* PricesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCD267F20CE55740054F0CB /* PricesService.swift */; };
+		3FCD268220CE55810054F0CB /* PricesServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCD268120CE55810054F0CB /* PricesServiceType.swift */; };
+		3FCD268420CE596B0054F0CB /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCD268320CE596B0054F0CB /* Service.swift */; };
+		3FCD268C20CE5AF60054F0CB /* ServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCD268A20CE5AF60054F0CB /* ServiceError.swift */; };
+		3FCD268D20CE5AF60054F0CB /* RequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCD268B20CE5AF60054F0CB /* RequestType.swift */; };
 		69C6BF369EBE89CA0DD2C68D /* Pods_CoinPrice.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 539489556143ADC8F4DE83E8 /* Pods_CoinPrice.framework */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +40,17 @@
 		3FCD266A20CE49410054F0CB /* PriceList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PriceList.storyboard; sourceTree = "<group>"; };
 		3FCD266D20CE49E40054F0CB /* CoinPriceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinPriceCell.swift; sourceTree = "<group>"; };
 		3FCD266E20CE49E40054F0CB /* CoinPriceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CoinPriceCell.xib; sourceTree = "<group>"; };
+		3FCD267120CE4FDA0054F0CB /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
+		3FCD267320CE50030054F0CB /* PriceListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceListViewModel.swift; sourceTree = "<group>"; };
+		3FCD267720CE53CC0054F0CB /* CoinTicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinTicker.swift; sourceTree = "<group>"; };
+		3FCD267920CE542E0054F0CB /* FiatCurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiatCurrency.swift; sourceTree = "<group>"; };
+		3FCD267B20CE545C0054F0CB /* Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
+		3FCD267D20CE550E0054F0CB /* CoinTickerResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinTickerResponse.swift; sourceTree = "<group>"; };
+		3FCD267F20CE55740054F0CB /* PricesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PricesService.swift; sourceTree = "<group>"; };
+		3FCD268120CE55810054F0CB /* PricesServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PricesServiceType.swift; sourceTree = "<group>"; };
+		3FCD268320CE596B0054F0CB /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		3FCD268A20CE5AF60054F0CB /* ServiceError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceError.swift; sourceTree = "<group>"; };
+		3FCD268B20CE5AF60054F0CB /* RequestType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestType.swift; sourceTree = "<group>"; };
 		539489556143ADC8F4DE83E8 /* Pods_CoinPrice.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoinPrice.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE0BBA204E1C7F766B579E16 /* Pods-CoinPrice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoinPrice.release.xcconfig"; path = "Pods/Target Support Files/Pods-CoinPrice/Pods-CoinPrice.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -76,6 +98,9 @@
 			isa = PBXGroup;
 			children = (
 				3FCD264A20CE479B0054F0CB /* AppDelegate.swift */,
+				3FCD267120CE4FDA0054F0CB /* DIContainer.swift */,
+				3FCD267520CE538A0054F0CB /* Models */,
+				3FCD267620CE53900054F0CB /* Services */,
 				3FCD266120CE492A0054F0CB /* Views */,
 			);
 			path = CoinPrice;
@@ -105,10 +130,42 @@
 			children = (
 				3FCD266A20CE49410054F0CB /* PriceList.storyboard */,
 				3FCD266920CE49410054F0CB /* PriceListViewController.swift */,
+				3FCD267320CE50030054F0CB /* PriceListViewModel.swift */,
 				3FCD266E20CE49E40054F0CB /* CoinPriceCell.xib */,
 				3FCD266D20CE49E40054F0CB /* CoinPriceCell.swift */,
 			);
 			path = PriceList;
+			sourceTree = "<group>";
+		};
+		3FCD267520CE538A0054F0CB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3FCD268920CE5AF60054F0CB /* Services */,
+				3FCD267D20CE550E0054F0CB /* CoinTickerResponse.swift */,
+				3FCD267720CE53CC0054F0CB /* CoinTicker.swift */,
+				3FCD267920CE542E0054F0CB /* FiatCurrency.swift */,
+				3FCD267B20CE545C0054F0CB /* Quote.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		3FCD267620CE53900054F0CB /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				3FCD268120CE55810054F0CB /* PricesServiceType.swift */,
+				3FCD267F20CE55740054F0CB /* PricesService.swift */,
+				3FCD268320CE596B0054F0CB /* Service.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		3FCD268920CE5AF60054F0CB /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				3FCD268A20CE5AF60054F0CB /* ServiceError.swift */,
+				3FCD268B20CE5AF60054F0CB /* RequestType.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		8486F63DA92DEEB495482CBD /* Pods */ = {
@@ -216,11 +273,17 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-CoinPrice/Pods-CoinPrice-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Swinject/Swinject.framework",
+				"${BUILT_PRODUCTS_DIR}/SwinjectStoryboard/SwinjectStoryboard.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Swinject.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwinjectStoryboard.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -234,8 +297,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FCD268C20CE5AF60054F0CB /* ServiceError.swift in Sources */,
+				3FCD267220CE4FDA0054F0CB /* DIContainer.swift in Sources */,
+				3FCD268020CE55740054F0CB /* PricesService.swift in Sources */,
+				3FCD268220CE55810054F0CB /* PricesServiceType.swift in Sources */,
+				3FCD267C20CE545C0054F0CB /* Quote.swift in Sources */,
 				3FCD264B20CE479B0054F0CB /* AppDelegate.swift in Sources */,
+				3FCD268D20CE5AF60054F0CB /* RequestType.swift in Sources */,
+				3FCD268420CE596B0054F0CB /* Service.swift in Sources */,
+				3FCD267820CE53CC0054F0CB /* CoinTicker.swift in Sources */,
+				3FCD267420CE50030054F0CB /* PriceListViewModel.swift in Sources */,
 				3FCD266B20CE49410054F0CB /* PriceListViewController.swift in Sources */,
+				3FCD267A20CE542E0054F0CB /* FiatCurrency.swift in Sources */,
+				3FCD267E20CE550E0054F0CB /* CoinTickerResponse.swift in Sources */,
 				3FCD266F20CE49E40054F0CB /* CoinPriceCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
