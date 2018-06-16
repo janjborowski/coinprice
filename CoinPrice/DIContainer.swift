@@ -14,20 +14,33 @@ final class DIContainer {
     let container = SwinjectStoryboard.defaultContainer
 
     init() {
+        registerPersistence()
         registerServices()
         registerViewModels()
         registerViewControllers()
     }
 
+    private func registerPersistence() {
+        container.register(CDModel.self) { resolver in
+            return CDModel()
+        }
+
+        container.register(CoinTickerDataProvider.self, factory: { resolver -> CoinTickerDataProvider in
+            let cdModel = resolver.resolve(CDModel.self)!
+            return CDCoinTickerDataProvider(coreDataModel: cdModel)
+        })
+    }
+
     private func registerServices() {
-        container.register(PricesServiceType.self) { resolver -> PricesServiceType in
-            return PricesService()
+        container.register(TickersServiceType.self) { resolver -> TickersServiceType in
+            let dataProvider = resolver.resolve(CoinTickerDataProvider.self)!
+            return TickersService(dataProvider: dataProvider)
         }
     }
 
     private func registerViewModels() {
         container.register(PriceListViewModel.self) { resolver in
-            let service = resolver.resolve(PricesServiceType.self)!
+            let service = resolver.resolve(TickersServiceType.self)!
             return PriceListViewModel(pricesService: service)
         }
     }

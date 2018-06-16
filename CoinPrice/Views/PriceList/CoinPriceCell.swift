@@ -20,7 +20,7 @@ final class CoinPriceCell: UITableViewCell {
         coinSymbolLabel.text = ticker.symbol
         coinNameLabel.text = ticker.name
 
-        if let price = ticker.currencyQuotes.values.first?.price {
+        if let price = ticker.quotes.first?.price {
             let formatter = NumberFormatter()
             if price >= 1 {
                 formatter.maximumFractionDigits = 2

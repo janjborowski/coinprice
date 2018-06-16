@@ -12,6 +12,7 @@ import RxSwift
 final class PriceListViewController: UIViewController {
 
     private let bag = DisposeBag()
+    private let refreshControl = UIRefreshControl()
 
     var viewModel: PriceListViewModel!
 
@@ -27,7 +28,7 @@ final class PriceListViewController: UIViewController {
         let coinPriceCellNib = UINib(nibName: String(describing: CoinPriceCell.self), bundle: nil)
         tableView.register(coinPriceCellNib, forCellReuseIdentifier: CoinPriceCell.reuseIdentifier)
 
-        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl = refreshControl
         tableView.tableFooterView = UIView(frame: .zero)
     }
 
@@ -40,29 +41,35 @@ final class PriceListViewController: UIViewController {
         isLoading.filter { $0 }
             .subscribe(onNext: { [weak self] (_) in
                 guard let tableView = self?.tableView,
-                    let refreshControl = tableView.refreshControl else {
+                    let refreshControl = tableView.refreshControl,
+                    !refreshControl.isRefreshing else {
                     return
                 }
                 tableView.refreshControl?.beginRefreshing()
-                let offset = CGPoint(x: 0, y: -refreshControl.frame.height)
-                tableView.setContentOffset(offset, animated: true)
             })
             .disposed(by: bag)
 
         isLoading.filter { !$0 }
             .subscribe(onNext: { [weak self] (_) in
-                guard let tableView = self?.tableView else {
+                guard let tableView = self?.tableView,
+                    tableView.refreshControl?.isRefreshing == true else {
                     return
                 }
                 self?.tableView.refreshControl?.endRefreshing()
-                tableView.setContentOffset(.zero, animated: true)
             })
             .disposed(by: bag)
 
-        viewModel.coinTickers.bind(to: tableView.rx.items(cellIdentifier: CoinPriceCell.reuseIdentifier)) { (index: Int, model : CoinTicker, cell:CoinPriceCell) in
-            cell.fill(ticker: model)
-        }
-        .disposed(by: bag)
+        refreshControl.rx.controlEvent(.valueChanged)
+            .subscribe(onNext: { [weak self] _ in
+                self?.viewModel.refresh()
+            })
+            .disposed(by: bag)
+
+        viewModel.coinTickers
+            .bind(to: tableView.rx.items(cellIdentifier: CoinPriceCell.reuseIdentifier)) { (index: Int, model : CoinTicker, cell:CoinPriceCell) in
+                cell.fill(ticker: model)
+            }
+            .disposed(by: bag)
     }
 
 }

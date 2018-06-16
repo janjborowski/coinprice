@@ -1,5 +1,5 @@
 //
-//  PricesServiceType.swift
+//  FiatCurrency.swift
 //  CoinPrice
 //
 //  Created by Jan Borowski on 11.06.2018.
@@ -7,10 +7,10 @@
 //
 
 import Foundation
-import RxSwift
 
-protocol PricesServiceType {
+enum FiatCurrency: String, Decodable {
 
-    func tickers() -> Observable<[CoinTicker]>
+    case usd = "USD"
+    case unknown
 
 }

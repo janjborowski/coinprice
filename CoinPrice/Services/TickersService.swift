@@ -9,7 +9,13 @@
 import Foundation
 import RxSwift
 
-class PricesService: PricesServiceType, Service {
+final class TickersService: TickersServiceType, Service {
+
+    private let dataProvider: CoinTickerDataProvider
+
+    init(dataProvider: CoinTickerDataProvider) {
+        self.dataProvider = dataProvider
+    }
 
     func tickers() -> Observable<[CoinTicker]> {
         let path = buildPath("ticker/")
@@ -20,7 +26,12 @@ class PricesService: PricesServiceType, Service {
             .map({ (response: CoinTickerResponse) -> [CoinTicker] in
                 return Array(response.data.values)
             })
-            .catchErrorJustReturn([])
+            .do(onNext: { [unowned self] (tickers) in
+                self.dataProvider.save(tickers: tickers)
+            })
+            .catchError { [unowned self] (error) -> Observable<[CoinTicker]> in
+                return Observable.from(optional: self.dataProvider.fetch())
+            }
     }
 
     private func buildPath(_ suffix: String) -> String {
