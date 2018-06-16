@@ -28,6 +28,8 @@ struct CDCoinTickersPersistenceMapper : PersistenceMapper {
             return CoinTicker(id: Int(persisted.identifier),
                 name: persisted.name ?? "",
                 symbol: persisted.symbol ?? "",
+                circulatingSupply: persisted.circulatingSupply as Decimal?,
+                maxSupply: persisted.maxSupply as Decimal?,
                 quotes: quoteMapper.mapToValue(persistedQuotes ?? []))
         }
     }
@@ -39,6 +41,8 @@ struct CDCoinTickersPersistenceMapper : PersistenceMapper {
             cdTicker.identifier = Int32(ticker.id)
             cdTicker.name = ticker.name
             cdTicker.symbol = ticker.symbol
+            cdTicker.circulatingSupply = ticker.circulatingSupply as NSDecimalNumber?
+            cdTicker.maxSupply = ticker.maxSupply as NSDecimalNumber?
             quoteMapper.mapToPersisted(ticker.quotes).forEach { cdTicker.addToQuotes($0) }
 
             return cdTicker

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17F77" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="CDCoinTicker" representedClassName="CDCoinTicker" syncable="YES" codeGenerationType="class">
+        <attribute name="circulatingSupply" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
         <attribute name="identifier" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="maxSupply" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="symbol" attributeType="String" syncable="YES"/>
         <relationship name="quotes" toMany="YES" deletionRule="Cascade" destinationEntity="CDQuote" inverseName="coinTicker" inverseEntity="CDQuote" syncable="YES"/>
@@ -13,12 +15,13 @@
     </entity>
     <entity name="CDQuote" representedClassName="CDQuote" syncable="YES" codeGenerationType="class">
         <attribute name="currency" attributeType="String" syncable="YES"/>
+        <attribute name="marketCap" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
         <attribute name="price" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
         <attribute name="volume24h" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
         <relationship name="coinTicker" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDCoinTicker" inverseName="quotes" inverseEntity="CDCoinTicker" syncable="YES"/>
     </entity>
     <elements>
-        <element name="CDCoinTicker" positionX="-63" positionY="-18" width="128" height="105"/>
-        <element name="CDQuote" positionX="-54" positionY="18" width="128" height="105"/>
+        <element name="CDCoinTicker" positionX="-63" positionY="-18" width="128" height="135"/>
+        <element name="CDQuote" positionX="-54" positionY="18" width="128" height="120"/>
     </elements>
 </model>

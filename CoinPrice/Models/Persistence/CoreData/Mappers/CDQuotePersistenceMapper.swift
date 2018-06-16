@@ -23,8 +23,9 @@ struct CDQuotePersistenceMapper: PersistenceMapper {
     func mapToValue(_ savedEntities: [CDQuote]) -> [Quote] {
         return savedEntities.map { (quote) -> Quote in
             return Quote(
-                price: quote.price?.decimalValue ?? Decimal.leastNonzeroMagnitude,
-                volume24h: quote.volume24h?.decimalValue ?? Decimal.leastNonzeroMagnitude,
+                price: quote.price?.decimalValue ?? .leastNonzeroMagnitude,
+                volume24h: quote.volume24h?.decimalValue ?? .leastNonzeroMagnitude,
+                marketCap: quote.marketCap?.decimalValue ?? .leastNonzeroMagnitude,
                 currency: quote.currency ?? ""
             )
         }
@@ -37,6 +38,7 @@ struct CDQuotePersistenceMapper: PersistenceMapper {
             cdQuote.currency = quote.fiatCurrency.rawValue
             cdQuote.price = quote.price as NSDecimalNumber
             cdQuote.volume24h = quote.volume24h as NSDecimalNumber
+            cdQuote.marketCap = quote.marketCap as NSDecimalNumber
 
             return cdQuote
         }

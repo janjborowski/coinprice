@@ -43,11 +43,20 @@ final class DIContainer {
             let service = resolver.resolve(TickersServiceType.self)!
             return PriceListViewModel(pricesService: service)
         }
+
+        container.register(CoinDetailsViewModel.self) { resolver in
+            return CoinDetailsViewModel()
+        }
     }
 
     private func registerViewControllers() {
         container.storyboardInitCompleted(PriceListViewController.self) { resolver, controller in
             controller.viewModel = resolver.resolve(PriceListViewModel.self)
+            controller.router = PriceListRouter(sourceController: controller)
+        }
+
+        container.storyboardInitCompleted(CoinDetailsViewController.self) { resolver, controller in
+            controller.viewModel = resolver.resolve(CoinDetailsViewModel.self)
         }
     }
 

@@ -15,11 +15,14 @@ final class PriceListViewController: UIViewController {
     private let refreshControl = UIRefreshControl()
 
     var viewModel: PriceListViewModel!
+    var router: PriceListRouter!
 
     @IBOutlet private weak var tableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.prefersLargeTitles = true
+
         setupTableView()
         subscribe()
     }
@@ -59,16 +62,22 @@ final class PriceListViewController: UIViewController {
             })
             .disposed(by: bag)
 
+        viewModel.coinTickers
+            .bind(to: tableView.rx.items(cellIdentifier: CoinPriceCell.reuseIdentifier)) { (index: Int, model : CoinTicker, cell:CoinPriceCell) in
+                cell.fill(ticker: model)
+            }
+            .disposed(by: bag)
+
         refreshControl.rx.controlEvent(.valueChanged)
             .subscribe(onNext: { [weak self] _ in
                 self?.viewModel.refresh()
             })
             .disposed(by: bag)
 
-        viewModel.coinTickers
-            .bind(to: tableView.rx.items(cellIdentifier: CoinPriceCell.reuseIdentifier)) { (index: Int, model : CoinTicker, cell:CoinPriceCell) in
-                cell.fill(ticker: model)
-            }
+        tableView.rx.modelSelected(CoinTicker.self)
+            .subscribe(onNext: { [weak self] ticker in
+                self?.router.showDetails(ticker: ticker)
+            })
             .disposed(by: bag)
     }
 
