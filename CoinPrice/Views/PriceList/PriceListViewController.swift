@@ -64,7 +64,8 @@ final class PriceListViewController: UIViewController {
 
         viewModel.coinTickers
             .bind(to: tableView.rx.items(cellIdentifier: CoinPriceCell.reuseIdentifier)) { (index: Int, model : CoinTicker, cell:CoinPriceCell) in
-                cell.fill(ticker: model)
+                let formatter = CoinPriceCellFormatter(ticker: model)
+                cell.fill(formatter)
             }
             .disposed(by: bag)
 

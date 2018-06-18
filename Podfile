@@ -6,5 +6,6 @@ target 'CoinPrice' do
   pod 'SwinjectStoryboard'
   pod 'RxSwift'
   pod 'RxCocoa'
+  pod 'RxOptional'
 
 end

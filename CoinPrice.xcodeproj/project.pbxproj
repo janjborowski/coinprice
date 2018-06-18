@@ -14,6 +14,9 @@
 		3F4C977C20D3A5A300529482 /* CoinPriceModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3F4C977520D3A5A300529482 /* CoinPriceModel.xcdatamodeld */; };
 		3F4C978120D3A83C00529482 /* CoinTickerDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4C978020D3A83C00529482 /* CoinTickerDataProvider.swift */; };
 		3F4C978420D3AF6F00529482 /* Codable+Any.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4C978320D3AF6F00529482 /* Codable+Any.swift */; };
+		3F57BF5F20D7925900DF39A2 /* NumberFormatter+Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F57BF5E20D7925900DF39A2 /* NumberFormatter+Formatters.swift */; };
+		3F57BF6120D7951400DF39A2 /* CoinDetailsViewFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F57BF6020D7951400DF39A2 /* CoinDetailsViewFormatter.swift */; };
+		3F57BF6320D79B9500DF39A2 /* CoinPriceCellFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F57BF6220D79B9500DF39A2 /* CoinPriceCellFormatter.swift */; };
 		3F63AF5E20D5124F000EC7DD /* CoinDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F63AF5D20D5124F000EC7DD /* CoinDetails.storyboard */; };
 		3F63AF6020D5156C000EC7DD /* CoinDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F63AF5F20D5156C000EC7DD /* CoinDetailsViewController.swift */; };
 		3F63AF6420D533CC000EC7DD /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F63AF6220D533CC000EC7DD /* Quote.swift */; };
@@ -50,6 +53,9 @@
 		3F4C977620D3A5A300529482 /* CoinPriceModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoinPriceModel.xcdatamodel; sourceTree = "<group>"; };
 		3F4C978020D3A83C00529482 /* CoinTickerDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinTickerDataProvider.swift; sourceTree = "<group>"; };
 		3F4C978320D3AF6F00529482 /* Codable+Any.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable+Any.swift"; sourceTree = "<group>"; };
+		3F57BF5E20D7925900DF39A2 /* NumberFormatter+Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NumberFormatter+Formatters.swift"; sourceTree = "<group>"; };
+		3F57BF6020D7951400DF39A2 /* CoinDetailsViewFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailsViewFormatter.swift; sourceTree = "<group>"; };
+		3F57BF6220D79B9500DF39A2 /* CoinPriceCellFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinPriceCellFormatter.swift; sourceTree = "<group>"; };
 		3F63AF5D20D5124F000EC7DD /* CoinDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CoinDetails.storyboard; sourceTree = "<group>"; };
 		3F63AF5F20D5156C000EC7DD /* CoinDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailsViewController.swift; sourceTree = "<group>"; };
 		3F63AF6220D533CC000EC7DD /* Quote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
@@ -132,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				3F4C978320D3AF6F00529482 /* Codable+Any.swift */,
+				3F57BF5E20D7925900DF39A2 /* NumberFormatter+Formatters.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -142,6 +149,7 @@
 				3F63AF5D20D5124F000EC7DD /* CoinDetails.storyboard */,
 				3F63AF5F20D5156C000EC7DD /* CoinDetailsViewController.swift */,
 				3F63AF6820D53888000EC7DD /* CoinDetailsViewModel.swift */,
+				3F57BF6020D7951400DF39A2 /* CoinDetailsViewFormatter.swift */,
 			);
 			path = CoinDetails;
 			sourceTree = "<group>";
@@ -262,6 +270,7 @@
 				3F63AF6620D537EF000EC7DD /* PriceListRouter.swift */,
 				3FCD266E20CE49E40054F0CB /* CoinPriceCell.xib */,
 				3FCD266D20CE49E40054F0CB /* CoinPriceCell.swift */,
+				3F57BF6220D79B9500DF39A2 /* CoinPriceCellFormatter.swift */,
 			);
 			path = PriceList;
 			sourceTree = "<group>";
@@ -383,6 +392,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-CoinPrice/Pods-CoinPrice-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxOptional/RxOptional.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Swinject/Swinject.framework",
 				"${BUILT_PRODUCTS_DIR}/SwinjectStoryboard/SwinjectStoryboard.framework",
@@ -390,6 +400,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxOptional.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Swinject.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwinjectStoryboard.framework",
@@ -412,6 +423,7 @@
 				3FCD267220CE4FDA0054F0CB /* DIContainer.swift in Sources */,
 				3FCD268020CE55740054F0CB /* TickersService.swift in Sources */,
 				3F4C977B20D3A5A300529482 /* CDCoinTickerPersistenceMapper.swift in Sources */,
+				3F57BF6120D7951400DF39A2 /* CoinDetailsViewFormatter.swift in Sources */,
 				3F63AF6520D533CC000EC7DD /* CoinTicker.swift in Sources */,
 				3F7A104020D3E1E100A22681 /* PersistenceMapper.swift in Sources */,
 				3FCD268220CE55810054F0CB /* TickersServiceType.swift in Sources */,
@@ -420,7 +432,9 @@
 				3F63AF6420D533CC000EC7DD /* Quote.swift in Sources */,
 				3F4C978420D3AF6F00529482 /* Codable+Any.swift in Sources */,
 				3FA9350720D2D2F2002E6B10 /* FiatCurrency.swift in Sources */,
+				3F57BF6320D79B9500DF39A2 /* CoinPriceCellFormatter.swift in Sources */,
 				3FCD267420CE50030054F0CB /* PriceListViewModel.swift in Sources */,
+				3F57BF5F20D7925900DF39A2 /* NumberFormatter+Formatters.swift in Sources */,
 				3FCD266B20CE49410054F0CB /* PriceListViewController.swift in Sources */,
 				3F63AF6720D537EF000EC7DD /* PriceListRouter.swift in Sources */,
 				3FA934FB20D2CFC6002E6B10 /* RequestType.swift in Sources */,

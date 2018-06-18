@@ -17,6 +17,7 @@ final class CoinDetailsViewController: UIViewController {
     @IBOutlet private weak var nameLabel: UILabel!
 
     @IBOutlet private weak var symbolLabel: UILabel!
+    @IBOutlet private weak var priceLabel: UILabel!
     @IBOutlet private weak var marketCapLabel: UILabel!
     @IBOutlet private weak var volumeLabel: UILabel!
     @IBOutlet private weak var circulatingSupplyLabel: UILabel!
@@ -33,36 +34,48 @@ final class CoinDetailsViewController: UIViewController {
     }
 
     private func subscribe() {
-        viewModel.icon
+         viewModel.viewFormatter
+            .map { $0.icon }
             .bind(to: iconView.rx.image)
             .disposed(by: bag)
 
-        viewModel.name
+        viewModel.viewFormatter
+            .map { $0.name }
             .bind(to: nameLabel.rx.text)
             .disposed(by: bag)
 
-        viewModel.symbol
+        viewModel.viewFormatter
+            .map { $0.symbol }
             .bind(to: symbolLabel.rx.text)
             .disposed(by: bag)
 
-        viewModel.marketCap
+        viewModel.viewFormatter
+            .map { $0.price }
+            .bind(to: priceLabel.rx.text)
+            .disposed(by: bag)
+
+        viewModel.viewFormatter
+            .map { $0.marketCap }
             .bind(to: marketCapLabel.rx.text)
             .disposed(by: bag)
 
-        viewModel.volume24h
+        viewModel.viewFormatter
+            .map { $0.volume }
             .bind(to: volumeLabel.rx.text)
             .disposed(by: bag)
 
-        viewModel.circulatingSupply
+        viewModel.viewFormatter
+            .map { $0.circulatingSupply }
             .bind(to: circulatingSupplyLabel.rx.text)
             .disposed(by: bag)
 
-        viewModel.maxSupply
+        viewModel.viewFormatter
+            .map { $0.maxSupply }
             .bind(to: maxSupplyLabel.rx.text)
             .disposed(by: bag)
 
-        viewModel.maxSupply
-            .map { $0 == nil }
+        viewModel.viewFormatter
+            .map { $0.maxSupply == nil }
             .bind(to: maxSupplyContainer.rx.isHidden)
             .disposed(by: bag)
     }
