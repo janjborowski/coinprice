@@ -14,15 +14,15 @@ final class PriceListViewModel {
     private let updateInterval = RxTimeInterval(300)
 
     private let bag = DisposeBag()
-    private let pricesService: TickersServiceType
+    private let tickerService: TickersServiceType
 
     private let userRefresh = PublishSubject<Void>()
 
     let isLoading: Observable<Bool>
     let coinTickers: Observable<[CoinTicker]>
 
-    init(pricesService: TickersServiceType) {
-        self.pricesService = pricesService
+    init(tickerService: TickersServiceType) {
+        self.tickerService = tickerService
 
         let ticker = Observable<Int>.interval(updateInterval, scheduler: MainScheduler.instance).startWith(0)
 
@@ -32,7 +32,7 @@ final class PriceListViewModel {
             ])
             .merge()
             .flatMap { _ in
-                return pricesService.tickers()
+                return tickerService.tickers()
             }
             .share()
 

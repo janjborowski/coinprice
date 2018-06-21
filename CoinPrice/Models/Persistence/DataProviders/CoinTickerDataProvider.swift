@@ -14,4 +14,8 @@ protocol CoinTickerDataProvider {
 
     func fetch() -> [CoinTicker]
 
+    func save(ticker: CoinTicker, pastPrices: [PastPrice])
+
+    func fetch(coin: CoinTicker) -> [PastPrice]
+
 }

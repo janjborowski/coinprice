@@ -1,4 +1,7 @@
 PODS:
+  - Charts (3.1.1):
+    - Charts/Core (= 3.1.1)
+  - Charts/Core (3.1.1)
   - RxCocoa (4.1.2):
     - RxSwift (~> 4.0)
   - RxOptional (3.4.0):
@@ -11,6 +14,7 @@ PODS:
     - Swinject (~> 2.3)
 
 DEPENDENCIES:
+  - Charts
   - RxCocoa
   - RxOptional
   - RxSwift
@@ -19,7 +23,8 @@ DEPENDENCIES:
   - SwinjectStoryboard
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
+    - Charts
     - RxCocoa
     - RxOptional
     - RxSwift
@@ -28,6 +33,7 @@ SPEC REPOS:
     - SwinjectStoryboard
 
 SPEC CHECKSUMS:
+  Charts: 90a4d61da0f6e06684c591e3bcab11940fe61736
   RxCocoa: d88ba0f1f6abf040011a9eb4b539324fc426843a
   RxOptional: fabc37fc8e3cf4c336ebaeb5c92b576c64b2e6c5
   RxSwift: e49536837d9901277638493ea537394d4b55f570
@@ -35,6 +41,6 @@ SPEC CHECKSUMS:
   Swinject: a1364b0f66c2736bb03c1c7cab54809e16df25da
   SwinjectStoryboard: de60d1d30fbf442fe90fc5c31d9fff89cf3ef64f
 
-PODFILE CHECKSUM: 5632a7fca720ccac193115d616ce15715fa6f066
+PODFILE CHECKSUM: 7a02d6d8169cb453b4f85bb042e6ad121b1be296
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.3

@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="L3d-nV-6KN">
-                                <rect key="frame" x="8" y="72" width="359" height="595"/>
+                                <rect key="frame" x="8" y="72" width="359" height="489"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8P5-dS-QVo">
                                         <rect key="frame" x="0.0" y="0.0" width="359" height="19.5"/>
@@ -122,16 +122,19 @@
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2qx-te-Qcw">
-                                        <rect key="frame" x="0.0" y="189" width="359" height="406"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2qx-te-Qcw" customClass="LineChartView" customModule="Charts">
+                                        <rect key="frame" x="0.0" y="189" width="359" height="300"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="300" id="PEt-zd-8Jr"/>
+                                        </constraints>
                                     </view>
                                 </subviews>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="51E-na-eET" firstAttribute="bottom" secondItem="L3d-nV-6KN" secondAttribute="bottom" id="HF6-ax-HNV"/>
+                            <constraint firstItem="51E-na-eET" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="L3d-nV-6KN" secondAttribute="bottom" id="HF6-ax-HNV"/>
                             <constraint firstItem="L3d-nV-6KN" firstAttribute="leading" secondItem="51E-na-eET" secondAttribute="leading" constant="8" id="cMn-mE-pg1"/>
                             <constraint firstItem="L3d-nV-6KN" firstAttribute="top" secondItem="51E-na-eET" secondAttribute="top" constant="8" id="ulP-S7-j1A"/>
                             <constraint firstItem="51E-na-eET" firstAttribute="trailing" secondItem="L3d-nV-6KN" secondAttribute="trailing" constant="8" id="yJS-dZ-bmn"/>
@@ -173,6 +176,7 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="chartView" destination="2qx-te-Qcw" id="KKS-bm-Whr"/>
                         <outlet property="circulatingSupplyLabel" destination="5hb-Rf-GMq" id="P9U-LN-Zot"/>
                         <outlet property="iconView" destination="vwd-xk-3gq" id="VWq-ab-xbE"/>
                         <outlet property="marketCapLabel" destination="a6I-tD-vYb" id="V41-aE-y2p"/>

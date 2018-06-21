@@ -36,16 +36,22 @@ final class DIContainer {
             let dataProvider = resolver.resolve(CoinTickerDataProvider.self)!
             return TickersService(dataProvider: dataProvider)
         }
+
+        container.register(PastPricesServiceType.self) { resolver -> PastPricesServiceType in
+            let dataProvider = resolver.resolve(CoinTickerDataProvider.self)!
+            return PastPricesService(dataProvider: dataProvider)
+        }
     }
 
     private func registerViewModels() {
         container.register(PriceListViewModel.self) { resolver in
             let service = resolver.resolve(TickersServiceType.self)!
-            return PriceListViewModel(pricesService: service)
+            return PriceListViewModel(tickerService: service)
         }
 
-        container.register(CoinDetailsViewModel.self) { _ in
-            return CoinDetailsViewModel()
+        container.register(CoinDetailsViewModel.self) { resolver in
+            let service = resolver.resolve(PastPricesServiceType.self)!
+            return CoinDetailsViewModel(pastPricesService: service)
         }
     }
 
