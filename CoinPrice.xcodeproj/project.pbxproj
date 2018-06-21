@@ -30,7 +30,6 @@
 		3FA9350720D2D2F2002E6B10 /* FiatCurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA9350220D2D2F2002E6B10 /* FiatCurrency.swift */; };
 		3FCD264B20CE479B0054F0CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCD264A20CE479B0054F0CB /* AppDelegate.swift */; };
 		3FCD265F20CE491C0054F0CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FCD265D20CE491C0054F0CB /* Assets.xcassets */; };
-		3FCD266020CE491C0054F0CB /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3FCD265E20CE491C0054F0CB /* Info.plist */; };
 		3FCD266520CE492A0054F0CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FCD266220CE492A0054F0CB /* LaunchScreen.storyboard */; };
 		3FCD266B20CE49410054F0CB /* PriceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCD266920CE49410054F0CB /* PriceListViewController.swift */; };
 		3FCD266C20CE49410054F0CB /* PriceList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FCD266A20CE49410054F0CB /* PriceList.storyboard */; };
@@ -120,8 +119,8 @@
 			isa = PBXGroup;
 			children = (
 				3F7A103F20D3E1E100A22681 /* PersistenceMapper.swift */,
-				3F4C977320D3A5A300529482 /* CDQuotePersistenceMapper.swift */,
 				3F4C977420D3A5A300529482 /* CDCoinTickerPersistenceMapper.swift */,
+				3F4C977320D3A5A300529482 /* CDQuotePersistenceMapper.swift */,
 			);
 			path = Mappers;
 			sourceTree = "<group>";
@@ -306,6 +305,7 @@
 				3FCD264420CE479B0054F0CB /* Frameworks */,
 				3FCD264520CE479B0054F0CB /* Resources */,
 				EB1F98A5FD8FAF54282E2735 /* [CP] Embed Pods Frameworks */,
+				3F57BF6420D79EF300DF39A2 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -323,7 +323,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Jan Borowski";
 				TargetAttributes = {
 					3FCD264620CE479B0054F0CB = {
@@ -359,7 +359,6 @@
 				3FCD267020CE49E40054F0CB /* CoinPriceCell.xib in Resources */,
 				3FCD265F20CE491C0054F0CB /* Assets.xcassets in Resources */,
 				3F63AF5E20D5124F000EC7DD /* CoinDetails.storyboard in Resources */,
-				3FCD266020CE491C0054F0CB /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,6 +382,19 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		3F57BF6420D79EF300DF39A2 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
 		EB1F98A5FD8FAF54282E2735 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;

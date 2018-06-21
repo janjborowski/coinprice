@@ -14,7 +14,7 @@ struct CDQuotePersistenceMapper: PersistenceMapper {
     typealias Value = Quote
     typealias Persisted = CDQuote
 
-    private let context : NSManagedObjectContext
+    private let context: NSManagedObjectContext
 
     init(context: NSManagedObjectContext) {
         self.context = context

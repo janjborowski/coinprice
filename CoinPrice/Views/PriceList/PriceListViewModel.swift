@@ -18,8 +18,8 @@ final class PriceListViewModel {
 
     private let userRefresh = PublishSubject<Void>()
 
-    let isLoading : Observable<Bool>
-    let coinTickers : Observable<[CoinTicker]>
+    let isLoading: Observable<Bool>
+    let coinTickers: Observable<[CoinTicker]>
 
     init(pricesService: TickersServiceType) {
         self.pricesService = pricesService

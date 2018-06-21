@@ -10,7 +10,7 @@ import CoreData
 
 final class CDCoinTickerDataProvider: CoinTickerDataProvider {
 
-    private let coreDataModel : CDModel
+    private let coreDataModel: CDModel
     private let mapper: CDCoinTickersPersistenceMapper
 
     init(coreDataModel: CDModel) {
@@ -20,6 +20,7 @@ final class CDCoinTickerDataProvider: CoinTickerDataProvider {
 
     func save(tickers: [CoinTicker]) {
         let tickersToSave = self.mapper.mapToPersisted(tickers)
+        let quotes = tickersToSave.compactMap { $0.quotes?.map { $0 } }
         try? self.coreDataModel.persistentContainer.viewContext.save()
     }
 

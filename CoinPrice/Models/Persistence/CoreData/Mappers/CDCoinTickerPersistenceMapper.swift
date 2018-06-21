@@ -9,13 +9,13 @@
 import Foundation
 import CoreData
 
-struct CDCoinTickersPersistenceMapper : PersistenceMapper {
+struct CDCoinTickersPersistenceMapper: PersistenceMapper {
 
     typealias Value = CoinTicker
     typealias Persisted = CDCoinTicker
 
-    private let context : NSManagedObjectContext
-    private let quoteMapper : CDQuotePersistenceMapper
+    private let context: NSManagedObjectContext
+    private let quoteMapper: CDQuotePersistenceMapper
 
     init(context: NSManagedObjectContext) {
         self.context = context
@@ -36,7 +36,13 @@ struct CDCoinTickersPersistenceMapper : PersistenceMapper {
 
     func mapToPersisted(_ values: [CoinTicker]) -> [CDCoinTicker] {
         return values.map { (ticker) in
-            let cdTicker = CDCoinTicker(context: context)
+            let cdTicker: CDCoinTicker
+            if let existingTicker = findPersistedObjectBy(id: ticker.id) {
+                existingTicker.quotes?.compactMap { $0 as? NSManagedObject }.forEach { context.delete($0) }
+                cdTicker = existingTicker
+            } else {
+                cdTicker = CDCoinTicker(context: context)
+            }
 
             cdTicker.identifier = Int32(ticker.id)
             cdTicker.name = ticker.name
@@ -49,5 +55,11 @@ struct CDCoinTickersPersistenceMapper : PersistenceMapper {
         }
     }
 
-}
+    private func findPersistedObjectBy(id: Int) -> CDCoinTicker? {
+        let fetchRequest: NSFetchRequest<CDCoinTicker> = CDCoinTicker.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "identifier = %@", id as NSNumber)
+        let results = try? context.fetch(fetchRequest)
+        return results?.first
+    }
 
+}

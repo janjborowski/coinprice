@@ -48,12 +48,11 @@ extension CoinTicker: Decodable {
         let maxSupply = try? container.decode(Decimal.self, forKey: .maxSupply)
 
         let rawQuotes = try container.decode([String: Any].self, forKey: .quotes)
-        let quotes = rawQuotes.compactMap { (key, anyValue) -> Quote? in
-            guard var mutableValues = anyValue as? Dictionary<String, Any> else {
+        let quotes = rawQuotes?.compactMap { (key, anyValue) -> Quote? in
+            guard var mutableValues = anyValue as? [String: Any] else {
                 return nil
             }
             mutableValues[Quote.CodingKeys.currency.rawValue] = key
-            
             do {
                 let data = try JSONSerialization.data(withJSONObject: mutableValues, options: .prettyPrinted)
                 let decoder = JSONDecoder()
@@ -61,7 +60,7 @@ extension CoinTicker: Decodable {
             } catch {
                 return nil
             }
-        }
+        } ?? []
 
         self.init(
             id: id,

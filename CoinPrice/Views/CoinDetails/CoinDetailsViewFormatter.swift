@@ -64,8 +64,7 @@ struct CoinDetailsViewFormatter {
     private func formatMoney(_ value: Decimal?) -> String? {
         if let value = value {
             return bigNumFormatter.string(from: value as NSDecimalNumber)
-        }
-        else {
+        } else {
             return nil
         }
     }
@@ -74,8 +73,7 @@ struct CoinDetailsViewFormatter {
         if let value = value,
             let output = cryptoFormatter.string(from: value as NSDecimalNumber) {
             return output + " " + ticker.symbol
-        }
-        else {
+        } else {
             return nil
         }
     }

@@ -38,8 +38,7 @@ extension NumberFormatter {
         if price >= 1 {
             minimumFractionDigits = 2
             maximumFractionDigits = 2
-        }
-        else {
+        } else {
             minimumIntegerDigits = 1
             maximumFractionDigits = 5
         }

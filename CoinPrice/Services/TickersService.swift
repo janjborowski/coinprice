@@ -29,7 +29,7 @@ final class TickersService: TickersServiceType, Service {
             .do(onNext: { [unowned self] (tickers) in
                 self.dataProvider.save(tickers: tickers)
             })
-            .catchError { [unowned self] (error) -> Observable<[CoinTicker]> in
+            .catchError { [unowned self] _ -> Observable<[CoinTicker]> in
                 return Observable.from(optional: self.dataProvider.fetch())
             }
     }

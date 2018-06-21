@@ -7,5 +7,5 @@ target 'CoinPrice' do
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'RxOptional'
-
+  pod 'SwiftLint'
 end

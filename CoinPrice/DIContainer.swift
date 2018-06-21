@@ -21,7 +21,7 @@ final class DIContainer {
     }
 
     private func registerPersistence() {
-        container.register(CDModel.self) { resolver in
+        container.register(CDModel.self) { _ in
             return CDModel()
         }
 
@@ -44,7 +44,7 @@ final class DIContainer {
             return PriceListViewModel(pricesService: service)
         }
 
-        container.register(CoinDetailsViewModel.self) { resolver in
+        container.register(CoinDetailsViewModel.self) { _ in
             return CoinDetailsViewModel()
         }
     }

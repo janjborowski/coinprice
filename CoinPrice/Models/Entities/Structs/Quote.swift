@@ -15,7 +15,7 @@ struct Quote: Decodable {
     let marketCap: Decimal
     private let currency: String
 
-    var fiatCurrency : FiatCurrency {
+    var fiatCurrency: FiatCurrency {
         return FiatCurrency(rawValue: currency) ?? .unknown
     }
 
