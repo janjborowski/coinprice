@@ -94,6 +94,7 @@ final class CoinDetailsViewController: UIViewController {
         chartView.setScaleEnabled(false)
         chartView.pinchZoomEnabled = false
         chartView.drawMarkers = false
+        chartView.noDataFont = UIFont.systemFont(ofSize: 16)
 
         chartView.backgroundColor = .white
         chartView.legend.enabled = false

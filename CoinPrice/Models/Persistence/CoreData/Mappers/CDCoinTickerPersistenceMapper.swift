@@ -38,7 +38,11 @@ struct CDCoinTickersPersistenceMapper: PersistenceMapper {
         return values.map { (ticker) in
             let cdTicker: CDCoinTicker
             if let existingTicker = findPersistedObjectBy(id: ticker.id) {
-                existingTicker.quotes?.compactMap { $0 as? NSManagedObject }.forEach { context.delete($0) }
+                let existingQuotes = existingTicker.quotes?.compactMap { $0 as? CDQuote }
+                existingQuotes?.forEach { quote in
+                    context.delete(quote)
+                    existingTicker.removeFromQuotes(quote)
+                }
                 cdTicker = existingTicker
             } else {
                 cdTicker = CDCoinTicker(context: context)

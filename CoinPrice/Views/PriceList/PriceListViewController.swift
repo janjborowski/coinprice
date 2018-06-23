@@ -70,6 +70,7 @@ final class PriceListViewController: UIViewController {
             .disposed(by: bag)
 
         refreshControl.rx.controlEvent(.valueChanged)
+            .sample(tableView.rx.didEndDecelerating)
             .subscribe(onNext: { [weak self] _ in
                 self?.viewModel.refresh()
             })
@@ -78,6 +79,12 @@ final class PriceListViewController: UIViewController {
         tableView.rx.modelSelected(CoinTicker.self)
             .subscribe(onNext: { [weak self] ticker in
                 self?.router.showDetails(ticker: ticker)
+            })
+            .disposed(by: bag)
+
+        tableView.rx.itemSelected
+            .subscribe(onNext: { [weak self] indexPath in
+                self?.tableView.deselectRow(at: indexPath, animated: true)
             })
             .disposed(by: bag)
     }

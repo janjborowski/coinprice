@@ -45,13 +45,14 @@ final class CDCoinTickerDataProvider: CoinTickerDataProvider {
     }
 
     private func fetchPersisted() -> [CDCoinTicker] {
-        let cdCoinTickers = try? context.fetch(CDCoinTicker.fetchRequest())
-        return cdCoinTickers as? [CDCoinTicker] ?? []
+        let fetchRequest: NSFetchRequest<CDCoinTicker> = CDCoinTicker.fetchRequest()
+        let cdCoinTickers = try? context.fetch(fetchRequest)
+        return cdCoinTickers ?? []
     }
 
     func fetch(coin: CoinTicker) -> [PastPrice] {
         let pastPrices = fetchPersisted(with: coin)
-        return pastPricesMapper.mapToValue(pastPrices)
+        return pastPricesMapper.mapToValue(pastPrices).sorted { $0.time < $1.time }
     }
 
     private func fetchPersisted(with coin: CoinTicker) -> [CDPastPrice] {

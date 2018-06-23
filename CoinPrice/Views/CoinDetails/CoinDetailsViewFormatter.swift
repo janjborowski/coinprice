@@ -54,8 +54,11 @@ struct CoinDetailsViewFormatter {
         return appendCryptoSymbol(value: coinTicker.maxSupply, ticker: coinTicker)
     }
 
-    var chartData: LineChartData {
-        return LineChartData(dataSet: computeChartDataSet())
+    var chartData: LineChartData? {
+        guard let dataSet = computeChartDataSet() else {
+            return nil
+        }
+        return LineChartData(dataSet: dataSet)
     }
 
     init(ticker: CoinTicker, pastPrices: [PastPrice]? = nil) {
@@ -85,9 +88,9 @@ struct CoinDetailsViewFormatter {
         }
     }
 
-    private func computeChartValues() -> [ChartDataEntry] {
+    private func computeChartValues() -> [ChartDataEntry]? {
         guard let pastPrices = self.pastPrices else {
-            return []
+            return nil
         }
 
         return pastPrices.compactMap { price in
@@ -99,8 +102,10 @@ struct CoinDetailsViewFormatter {
             }
     }
 
-    private func computeChartDataSet() -> LineChartDataSet {
-        let values = computeChartValues()
+    private func computeChartDataSet() -> LineChartDataSet? {
+        guard let values = computeChartValues(), values.count > 0 else {
+            return nil
+        }
         let dataSet = LineChartDataSet(values: values, label: nil)
         dataSet.axisDependency = .right
         dataSet.setColor(UIColor(red: 51/255, green: 181/255, blue: 229/255, alpha: 1))

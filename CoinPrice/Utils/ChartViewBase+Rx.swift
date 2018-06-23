@@ -13,8 +13,8 @@ import RxCocoa
 
 extension Reactive where Base: ChartViewBase {
 
-    var chartData: Binder<ChartData> {
-        return Binder(self.base) { (chartView: ChartViewBase, data: ChartData) in
+    var chartData: Binder<ChartData?> {
+        return Binder(self.base) { (chartView: ChartViewBase, data: ChartData?) in
             chartView.data = data
         }
     }
