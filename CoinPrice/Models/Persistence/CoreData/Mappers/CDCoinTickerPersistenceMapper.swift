@@ -38,22 +38,17 @@ struct CDCoinTickersPersistenceMapper: PersistenceMapper {
         return values.map { (ticker) in
             let cdTicker: CDCoinTicker
             if let existingTicker = findPersistedObjectBy(id: ticker.id) {
-                let existingQuotes = existingTicker.quotes?.compactMap { $0 as? CDQuote }
-                existingQuotes?.forEach { quote in
-                    context.delete(quote)
-                    existingTicker.removeFromQuotes(quote)
-                }
                 cdTicker = existingTicker
             } else {
                 cdTicker = CDCoinTicker(context: context)
             }
+            updateQuotes(of: cdTicker, with: ticker)
 
             cdTicker.identifier = Int32(ticker.id)
             cdTicker.name = ticker.name
             cdTicker.symbol = ticker.symbol
             cdTicker.circulatingSupply = ticker.circulatingSupply as NSDecimalNumber?
             cdTicker.maxSupply = ticker.maxSupply as NSDecimalNumber?
-            quoteMapper.mapToPersisted(ticker.quotes).forEach { cdTicker.addToQuotes($0) }
 
             return cdTicker
         }
@@ -64,6 +59,25 @@ struct CDCoinTickersPersistenceMapper: PersistenceMapper {
         fetchRequest.predicate = NSPredicate(format: "identifier = %@", id as NSNumber)
         let results = try? context.fetch(fetchRequest)
         return results?.first
+    }
+
+    private func updateQuotes(of savedTicker: CDCoinTicker, with valueTicker: CoinTicker) {
+        let savedQuotes = savedTicker.quotes?.compactMap { $0 as? CDQuote } ?? []
+        let newQuotes = quoteMapper.mapToPersisted(valueTicker.quotes)
+        for newQuote in newQuotes {
+            for savedQuote in savedQuotes {
+                if let pastPrices = savedQuote.pastPrices, newQuote.currency == savedQuote.currency {
+                    newQuote.addToPastPrices(pastPrices)
+                }
+            }
+        }
+
+        savedQuotes.forEach { quote in
+            context.delete(quote)
+            savedTicker.removeFromQuotes(quote)
+        }
+
+        newQuotes.forEach { savedTicker.addToQuotes($0) }
     }
 
 }

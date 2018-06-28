@@ -29,10 +29,10 @@ final class PastPricesService: Service, PastPricesServiceType {
                 return Array(response.data)
             })
             .do(onNext: { [unowned self] (pastPrices) in
-                self.dataProvider.save(ticker: ticker, pastPrices: pastPrices)
+                self.dataProvider.save(ticker: ticker, pastPrices: pastPrices, in: fiatCurrency)
             })
             .catchError { [unowned self] _ -> Observable<[PastPrice]> in
-                return Observable.from(optional: self.dataProvider.fetch(coin: ticker))
+                return Observable.from(optional: self.dataProvider.fetch(ticker: ticker, in: fiatCurrency))
             }
     }
 

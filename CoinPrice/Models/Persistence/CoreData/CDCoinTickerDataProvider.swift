@@ -30,12 +30,12 @@ final class CDCoinTickerDataProvider: CoinTickerDataProvider {
         coreDataModel.saveContext()
     }
 
-    func save(ticker: CoinTicker, pastPrices: [PastPrice]) {
+    func save(ticker: CoinTicker, pastPrices: [PastPrice], in fiatCurrency: FiatCurrency) {
         guard let cdTicker = find(with: ticker.id) else {
             return
         }
 
-        _ = pastPricesMapper.mapToPersisted(pastPrices, ticker: cdTicker)
+        _ = pastPricesMapper.mapToPersisted(pastPrices, ticker: cdTicker, currency: fiatCurrency)
         coreDataModel.saveContext()
     }
 
@@ -50,17 +50,25 @@ final class CDCoinTickerDataProvider: CoinTickerDataProvider {
         return cdCoinTickers ?? []
     }
 
-    func fetch(coin: CoinTicker) -> [PastPrice] {
-        let pastPrices = fetchPersisted(with: coin)
+    func fetch(ticker: CoinTicker, in fiatCurrency: FiatCurrency) -> [PastPrice] {
+        let pastPrices = fetchPersisted(with: ticker, in: fiatCurrency)
         return pastPricesMapper.mapToValue(pastPrices).sorted { $0.time < $1.time }
     }
 
-    private func fetchPersisted(with coin: CoinTicker) -> [CDPastPrice] {
-        guard let cdTicker = find(with: coin.id) else {
+    private func fetchPersisted(with ticker: CoinTicker, in fiatCurrency: FiatCurrency) -> [CDPastPrice] {
+        guard let cdTicker = find(with: ticker.id) else {
             return []
         }
+        let pastPrices = cdTicker.quotes?
+            .compactMap { $0 as? CDQuote }
+            .first { $0.currency! == fiatCurrency.rawValue }
+            .map { $0.pastPrices?.compactMap { $0 as? CDPastPrice } }
 
-        return cdTicker.pastPrices?.compactMap { $0 as? CDPastPrice } ?? []
+        if let savedPrices = pastPrices {
+            return savedPrices ?? []
+        } else {
+            return []
+        }
     }
 
     private func find(with id: Int) -> CDCoinTicker? {

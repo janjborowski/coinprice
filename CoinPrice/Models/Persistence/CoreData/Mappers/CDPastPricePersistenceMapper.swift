@@ -20,7 +20,11 @@ struct CDPastPricePersistenceMapper {
         self.context = context
     }
 
-    func mapToPersisted(_ values: [PastPrice], ticker: CDCoinTicker) -> [CDPastPrice] {
+    func mapToPersisted(_ values: [PastPrice], ticker: CDCoinTicker, currency: FiatCurrency) -> [CDPastPrice] {
+        guard let quote = findQuote(in: ticker, of: currency) else {
+            return []
+        }
+
         let cdPastPrices = values.enumerated().map({ (offset, pastPrice) -> CDPastPrice in
             let cdPastPrice = CDPastPrice(context: context)
 
@@ -34,7 +38,7 @@ struct CDPastPricePersistenceMapper {
             return cdPastPrice
         })
 
-        cleanAndUpdateCoinPrices(pastPrices: cdPastPrices, ticker: ticker)
+        cleanAndUpdate(quote: quote, with: cdPastPrices)
         return cdPastPrices
     }
 
@@ -51,9 +55,16 @@ struct CDPastPricePersistenceMapper {
         }
     }
 
-    private func cleanAndUpdateCoinPrices(pastPrices: [CDPastPrice], ticker: CDCoinTicker) {
-        ticker.pastPrices?.compactMap { $0 as? NSManagedObject }.forEach { context.delete($0) }
-        pastPrices.forEach { ticker.addToPastPrices($0) }
+    private func cleanAndUpdate(quote: CDQuote, with pastPrices: [CDPastPrice]) {
+        quote.pastPrices?.compactMap { $0 as? NSManagedObject }.forEach { context.delete($0) }
+        pastPrices.forEach { quote.addToPastPrices($0) }
+    }
+
+    private func findQuote(in ticker: CDCoinTicker, of fiatCurrency: FiatCurrency) -> CDQuote? {
+        let quotes  = ticker.quotes?.compactMap { $0 as? CDQuote }
+        return quotes?.first(where: { (quote) in
+            return quote.currency == fiatCurrency.rawValue
+        })
     }
 
 }

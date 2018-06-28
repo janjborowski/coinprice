@@ -6,7 +6,6 @@
         <attribute name="maxSupply" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="symbol" attributeType="String" syncable="YES"/>
-        <relationship name="pastPrices" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="CDPastPrice" inverseName="coinTicker" inverseEntity="CDPastPrice" syncable="YES"/>
         <relationship name="quotes" toMany="YES" deletionRule="Nullify" destinationEntity="CDQuote" inverseName="coinTicker" inverseEntity="CDQuote" syncable="YES"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
@@ -21,7 +20,7 @@
         <attribute name="low" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
         <attribute name="open" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
         <attribute name="time" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <relationship name="coinTicker" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDCoinTicker" inverseName="pastPrices" inverseEntity="CDCoinTicker" syncable="YES"/>
+        <relationship name="quote" maxCount="1" deletionRule="Nullify" destinationEntity="CDQuote" inverseName="pastPrices" inverseEntity="CDQuote" syncable="YES"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="index"/>
@@ -34,10 +33,11 @@
         <attribute name="price" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
         <attribute name="volume24h" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
         <relationship name="coinTicker" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDCoinTicker" inverseName="quotes" inverseEntity="CDCoinTicker" syncable="YES"/>
+        <relationship name="pastPrices" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="CDPastPrice" inverseName="quote" inverseEntity="CDPastPrice" syncable="YES"/>
     </entity>
     <elements>
-        <element name="CDCoinTicker" positionX="-63" positionY="-18" width="128" height="150"/>
-        <element name="CDPastPrice" positionX="-63" positionY="45" width="128" height="150"/>
-        <element name="CDQuote" positionX="-54" positionY="18" width="128" height="120"/>
+        <element name="CDCoinTicker" positionX="-396" positionY="-27" width="128" height="133"/>
+        <element name="CDPastPrice" positionX="-155" positionY="84" width="128" height="148"/>
+        <element name="CDQuote" positionX="-189" positionY="-75" width="128" height="133"/>
     </elements>
 </model>
