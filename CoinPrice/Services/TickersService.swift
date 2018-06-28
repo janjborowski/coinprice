@@ -17,10 +17,11 @@ final class TickersService: TickersServiceType, Service {
         self.dataProvider = dataProvider
     }
 
-    func tickers() -> Observable<[CoinTicker]> {
+    func tickers(with fiatCurrency: FiatCurrency) -> Observable<[CoinTicker]> {
         let path = buildPath("ticker/")
         let params = [
-            ("limit", "10")
+            ("limit", "10"),
+            ("convert", fiatCurrency.rawValue)
         ]
         return buildAndMapRequest(method: .get, path: path, params: params)
             .map({ (response: CoinTickerResponse) -> [CoinTicker] in

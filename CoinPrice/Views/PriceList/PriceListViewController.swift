@@ -21,7 +21,7 @@ final class PriceListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.prefersLargeTitles = true
+        tabBarController?.navigationItem.title = "Crypto prices"
 
         setupTableView()
         subscribe()
@@ -62,9 +62,9 @@ final class PriceListViewController: UIViewController {
             })
             .disposed(by: bag)
 
-        viewModel.coinTickers
-            .bind(to: tableView.rx.items(cellIdentifier: CoinPriceCell.reuseIdentifier)) { (_, model: CoinTicker, cell: CoinPriceCell) in
-                let formatter = CoinPriceCellFormatter(ticker: model)
+        viewModel.cellModels
+            .bind(to: tableView.rx.items(cellIdentifier: CoinPriceCell.reuseIdentifier)) { (_, model, cell: CoinPriceCell) in
+                let formatter = CoinPriceCellFormatter(ticker: model.ticker, fiatCurrency: model.fiatCurrency)
                 cell.fill(formatter)
             }
             .disposed(by: bag)
@@ -76,9 +76,9 @@ final class PriceListViewController: UIViewController {
             })
             .disposed(by: bag)
 
-        tableView.rx.modelSelected(CoinTicker.self)
-            .subscribe(onNext: { [weak self] ticker in
-                self?.router.showDetails(ticker: ticker)
+        tableView.rx.modelSelected(PriceListViewModel.CellModel.self)
+            .subscribe(onNext: { [weak self] model in
+                self?.router.showDetails(ticker: model.ticker)
             })
             .disposed(by: bag)
 

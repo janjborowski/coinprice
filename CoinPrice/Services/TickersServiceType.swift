@@ -11,6 +11,6 @@ import RxSwift
 
 protocol TickersServiceType {
 
-    func tickers() -> Observable<[CoinTicker]>
+    func tickers(with fiatCurrency: FiatCurrency) -> Observable<[CoinTicker]>
 
 }

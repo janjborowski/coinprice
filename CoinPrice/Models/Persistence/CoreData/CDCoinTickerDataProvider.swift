@@ -15,19 +15,19 @@ final class CDCoinTickerDataProvider: CoinTickerDataProvider {
     private let pastPricesMapper: CDPastPricePersistenceMapper
 
     private var context: NSManagedObjectContext {
-        return coreDataModel.persistentContainer.viewContext
+        return coreDataModel.context
     }
 
     init(coreDataModel: CDModel) {
         self.coreDataModel = coreDataModel
-        mapper = CDCoinTickersPersistenceMapper(context: coreDataModel.persistentContainer.viewContext)
-        pastPricesMapper = CDPastPricePersistenceMapper(context: coreDataModel.persistentContainer.viewContext)
+        mapper = CDCoinTickersPersistenceMapper(context: coreDataModel.context)
+        pastPricesMapper = CDPastPricePersistenceMapper(context: coreDataModel.context)
     }
 
     func save(tickers: [CoinTicker]) {
         let tickersToSave = self.mapper.mapToPersisted(tickers)
         _ = tickersToSave.compactMap { $0.quotes?.map { $0 } }
-        try? self.coreDataModel.persistentContainer.viewContext.save()
+        coreDataModel.saveContext()
     }
 
     func save(ticker: CoinTicker, pastPrices: [PastPrice]) {
@@ -36,7 +36,7 @@ final class CDCoinTickerDataProvider: CoinTickerDataProvider {
         }
 
         _ = pastPricesMapper.mapToPersisted(pastPrices, ticker: cdTicker)
-        try? self.coreDataModel.persistentContainer.viewContext.save()
+        coreDataModel.saveContext()
     }
 
     func fetch() -> [CoinTicker] {

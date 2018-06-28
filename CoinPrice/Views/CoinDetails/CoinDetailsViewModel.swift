@@ -13,21 +13,23 @@ import RxOptional
 final class CoinDetailsViewModel {
 
     private let pastPricesService: PastPricesServiceType
+    private let settingsDataProvider: SettingsDataProvider
 
     private let ticker = BehaviorSubject<CoinTicker?>(value: nil)
 
     let viewFormatter: Observable<CoinDetailsViewFormatter>
 
-    init(pastPricesService: PastPricesServiceType) {
+    init(pastPricesService: PastPricesServiceType, settingsDataProvider: SettingsDataProvider) {
         self.pastPricesService = pastPricesService
+        self.settingsDataProvider = settingsDataProvider
 
         let tickerNonNil = ticker.asObservable().filterNil()
         let pastPrices = tickerNonNil
-            .flatMap { pastPricesService.pastPrices(ticker: $0, fiatCurrency: .usd) }
+            .flatMap { pastPricesService.pastPrices(ticker: $0, fiatCurrency: settingsDataProvider.currency.value) }
             .startWith([])
 
         viewFormatter = Observable.combineLatest(tickerNonNil, pastPrices)
-            .map { CoinDetailsViewFormatter(ticker: $0.0, pastPrices: $0.1) }
+            .map { CoinDetailsViewFormatter(ticker: $0.0, fiatCurrency: settingsDataProvider.currency.value, pastPrices: $0.1) }
             .share()
     }
 

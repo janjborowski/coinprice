@@ -44,10 +44,22 @@ extension NumberFormatter {
         }
     }
 
-    func configure(for currency: FiatCurrency) {
-        switch currency {
-        case .usd:
+    func configure(for fiatCurrency: FiatCurrency) {
+        switch fiatCurrency {
+        case .usd, .aud, .cad:
             currencySymbol = "$"
+        case .eur:
+            currencySymbol = "€"
+        case .nok, .sek:
+            currencySymbol = "kr"
+        case .jpy, .cny:
+            currencySymbol = "¥"
+        case .gbp:
+            currencySymbol = "£"
+        case .pln:
+            currencySymbol = "zł"
+        case .rub:
+            currencySymbol = "₽"
         default:
             currencySymbol = ""
         }

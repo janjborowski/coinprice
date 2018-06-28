@@ -12,11 +12,16 @@ import Charts
 struct CoinDetailsViewFormatter {
 
     private let coinTicker: CoinTicker
+    private let fiatCurrency: FiatCurrency
     private let pastPrices: [PastPrice]?
 
     private let priceFormatter = NumberFormatter(type: .price)
     private let bigNumFormatter = NumberFormatter(type: .bigNum)
     private let cryptoFormatter = NumberFormatter(type: .crypto)
+
+    private var quote: Quote? {
+        return coinTicker.quotes.first { $0.fiatCurrency == fiatCurrency } ?? coinTicker.quotes.first { $0.fiatCurrency == FiatCurrency.base }
+    }
 
     var icon: UIImage? {
          return UIImage(named: coinTicker.symbol.lowercased())
@@ -31,7 +36,7 @@ struct CoinDetailsViewFormatter {
     }
 
     var price: String? {
-        guard let quote = coinTicker.quotes.first else {
+        guard let quote = self.quote else {
             return nil
         }
         priceFormatter.configure(for: quote.price)
@@ -39,11 +44,11 @@ struct CoinDetailsViewFormatter {
     }
 
     var marketCap: String? {
-        return formatMoney(coinTicker.quotes.first?.marketCap)
+        return formatMoney(quote?.marketCap)
     }
 
     var volume: String? {
-        return formatMoney(coinTicker.quotes.first?.volume24h)
+        return formatMoney(quote?.volume24h)
     }
 
     var circulatingSupply: String? {
@@ -61,11 +66,12 @@ struct CoinDetailsViewFormatter {
         return LineChartData(dataSet: dataSet)
     }
 
-    init(ticker: CoinTicker, pastPrices: [PastPrice]? = nil) {
+    init(ticker: CoinTicker, fiatCurrency: FiatCurrency, pastPrices: [PastPrice]? = nil) {
         self.coinTicker = ticker
+        self.fiatCurrency = fiatCurrency
         self.pastPrices = pastPrices
 
-        if let currency = ticker.quotes.first?.fiatCurrency {
+        if let currency = quote?.fiatCurrency {
             priceFormatter.configure(for: currency)
             bigNumFormatter.configure(for: currency)
         }

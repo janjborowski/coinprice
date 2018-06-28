@@ -9,6 +9,35 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Tab Bar Controller-->
+        <scene sceneID="aIJ-if-IL3">
+            <objects>
+                <tabBarController id="SrA-A8-KUd" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Wvr-9f-g5U"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Xd3-zh-5R0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="ngt-4h-Exx" kind="relationship" relationship="viewControllers" id="PHc-Jv-y5o"/>
+                        <segue destination="0T3-Yi-UET" kind="relationship" relationship="viewControllers" id="uPk-KD-Ki3"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bBe-uK-TWF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1034" y="88"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="VLZ-yF-Ybd">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Settings" id="0T3-Yi-UET" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="Ll7-KT-vQj"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="asR-Rx-LuM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-162" y="247"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="Nys-OY-57e">
             <objects>
@@ -18,12 +47,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="ngt-4h-Exx" kind="relationship" relationship="rootViewController" id="Ews-Yf-NjH"/>
+                        <segue destination="SrA-A8-KUd" kind="relationship" relationship="rootViewController" id="QeF-3w-QXy"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c36-iT-5i4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-943" y="88"/>
+            <point key="canvasLocation" x="-2394" y="88"/>
         </scene>
         <!--Crypto prices-->
         <scene sceneID="msn-7A-zb4">
@@ -34,7 +63,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iSz-Lv-ZYy">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                         </subviews>
@@ -47,14 +76,15 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="KtS-Ub-sgB"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Crypto prices" largeTitleDisplayMode="always" id="xTI-7T-ksM"/>
+                    <tabBarItem key="tabBarItem" title="Crypto prices" id="2XY-q5-3yj"/>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="xTI-7T-ksM"/>
                     <connections>
                         <outlet property="tableView" destination="iSz-Lv-ZYy" id="BeO-fz-9qx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MbS-LI-iMS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="36" y="87.706146926536732"/>
+            <point key="canvasLocation" x="-162" y="-215"/>
         </scene>
     </scenes>
 </document>
