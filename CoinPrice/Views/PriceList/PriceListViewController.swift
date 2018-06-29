@@ -21,10 +21,14 @@ final class PriceListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tabBarController?.navigationItem.title = "Crypto prices"
 
         setupTableView()
         subscribe()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.navigationItem.title = "Crypto prices"
     }
 
     private func setupTableView() {

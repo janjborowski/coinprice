@@ -25,12 +25,11 @@ final class CoinDetailsViewModel {
 
         let tickerNonNil = ticker.asObservable().filterNil()
         let pastPrices = tickerNonNil
-            .flatMap { pastPricesService.pastPrices(ticker: $0, fiatCurrency: settingsDataProvider.currency.value) }
-            .startWith([])
+            .flatMap { pastPricesService.pastPrices(ticker: $0, fiatCurrency: settingsDataProvider.currency.value).startWith([]) }
 
         viewFormatter = Observable.combineLatest(tickerNonNil, pastPrices)
             .map { CoinDetailsViewFormatter(ticker: $0.0, fiatCurrency: settingsDataProvider.currency.value, pastPrices: $0.1) }
-            .share()
+            .share(replay: 1)
     }
 
     func configure(ticker: CoinTicker) {

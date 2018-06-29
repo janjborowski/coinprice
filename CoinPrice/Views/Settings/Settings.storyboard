@@ -44,7 +44,7 @@
                             <outlet property="delegate" destination="50Y-kE-y7T" id="m9K-oA-ot0"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Settings" id="FzW-7P-lg1"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="settings" id="FzW-7P-lg1"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iwJ-0k-BrR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -52,4 +52,7 @@
             <point key="canvasLocation" x="55" y="90"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="settings" width="25" height="25"/>
+    </resources>
 </document>

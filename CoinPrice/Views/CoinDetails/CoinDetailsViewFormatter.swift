@@ -59,6 +59,10 @@ struct CoinDetailsViewFormatter {
         return appendCryptoSymbol(value: coinTicker.maxSupply, ticker: coinTicker)
     }
 
+    var maxSupplyIsHidden: Bool {
+        return maxSupply == nil
+    }
+
     var chartData: LineChartData? {
         guard let dataSet = computeChartDataSet() else {
             return nil

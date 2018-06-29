@@ -33,7 +33,7 @@
         <attribute name="price" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
         <attribute name="volume24h" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
         <relationship name="coinTicker" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDCoinTicker" inverseName="quotes" inverseEntity="CDCoinTicker" syncable="YES"/>
-        <relationship name="pastPrices" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="CDPastPrice" inverseName="quote" inverseEntity="CDPastPrice" syncable="YES"/>
+        <relationship name="pastPrices" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="CDPastPrice" inverseName="quote" inverseEntity="CDPastPrice" syncable="YES"/>
     </entity>
     <elements>
         <element name="CDCoinTicker" positionX="-396" positionY="-27" width="128" height="133"/>

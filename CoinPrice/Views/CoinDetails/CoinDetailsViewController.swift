@@ -79,6 +79,11 @@ final class CoinDetailsViewController: UIViewController {
             .disposed(by: bag)
 
         viewModel.viewFormatter
+            .map { $0.maxSupplyIsHidden }
+            .bind(to: maxSupplyContainer.rx.isHidden)
+            .disposed(by: bag)
+
+        viewModel.viewFormatter
             .map { $0.chartData }
             .bind(to: chartView.rx.chartData)
             .disposed(by: bag)

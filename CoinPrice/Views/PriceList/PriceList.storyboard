@@ -76,7 +76,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="KtS-Ub-sgB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Crypto prices" id="2XY-q5-3yj"/>
+                    <tabBarItem key="tabBarItem" title="Crypto prices" image="trending_black_36pt" id="2XY-q5-3yj"/>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="xTI-7T-ksM"/>
                     <connections>
                         <outlet property="tableView" destination="iSz-Lv-ZYy" id="BeO-fz-9qx"/>
@@ -87,4 +87,7 @@
             <point key="canvasLocation" x="-162" y="-215"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="trending_black_36pt" width="36" height="36"/>
+    </resources>
 </document>
